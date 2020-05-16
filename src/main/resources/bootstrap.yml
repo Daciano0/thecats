@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: cat-breeds
+  cloud:
+    consul:
+      host: 0.0.0.0:8600
+      config:
+        format: YAML
+        watch:
+          delay: 30000
+      discovery:
+        register-health-check: false
+    loadbalancer:
+      ribbon:
+        enabled: false

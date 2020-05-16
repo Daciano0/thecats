@@ -1,0 +1,93 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.api'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "Hoxton.SR4")
+}
+
+dependencies {
+
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-consul-config'
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery',{
+		exclude group: 'org.springframework.cloud', module:'spring-cloud-netflix-core'
+		exclude group: 'com.netflix.ribbon', module:'ribbon'
+		exclude group: 'com.netflix.ribbon', module:'ribbon-core'
+		exclude group: 'com.netflix.ribbon', module:'ribbon-httpclient'
+		exclude group: 'com.netflix.ribbon', module:'ribbon-loadbalancer'
+
+	}
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign', {
+		exclude group: 'org.springframework.cloud', module:'spring-cloud-netflix-core'
+		exclude group: 'com.netflix.ribbon', module:'ribbon'
+		exclude group: 'com.netflix.ribbon', module:'ribbon-core'
+		exclude group: 'com.netflix.ribbon', module:'ribbon-httpclient'
+		exclude group: 'com.netflix.ribbon', module:'ribbon-loadbalancer'
+	}
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign', {
+		exclude group: 'org.springframework.cloud', module:'spring-cloud-netflix-core'
+		exclude group: 'com.netflix.ribbon', module:'ribbon'
+		exclude group: 'com.netflix.ribbon', module:'ribbon-core'
+		exclude group: 'com.netflix.ribbon', module:'ribbon-httpclient'
+		exclude group: 'com.netflix.ribbon', module:'ribbon-loadbalancer'
+	}
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth',{
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+	testImplementation "org.mockito:mockito-core:3.2.4"
+	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+	compile "org.springframework.boot:spring-boot-configuration-processor"
+	compile 'io.sentry:sentry-spring:1.7.30'
+}
+
+configurations {
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+///Docker and make - Build
+test {
+	useJUnitPlatform()
+}
