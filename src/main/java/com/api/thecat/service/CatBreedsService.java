@@ -44,9 +44,5 @@ public class CatBreedsService {
         }
     }
 
-    public void generatorAddressBreeds() {
-
-    }
-
 
 }

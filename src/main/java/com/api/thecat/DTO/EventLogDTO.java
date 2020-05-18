@@ -11,7 +11,7 @@ import lombok.SneakyThrows;
 public class EventLogDTO {
 
     public EventsEnum event;
-    public String carrier = "AMEF";
+    public String Information = "TheCatAPI";
     public Object body;
 
     public EventLogDTO(EventsEnum event, Object body) {

@@ -5,7 +5,7 @@ import com.api.thecat.DTO.EventLogDTO;
 import com.api.thecat.enums.EventsEnum;
 import com.api.thecat.exceptions.AlreadyExistsOrderException;
 import com.api.thecat.exceptions.NotFoundException;
-import com.api.thecat.exceptions.OrderException;
+import com.api.thecat.exceptions.TheCatException;
 import com.api.thecat.exceptions.UnauthorizedException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
@@ -37,7 +37,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(OrderException.class)
+    @ExceptionHandler(TheCatException.class)
     public final ResponseEntity<Object> handleOcurrenceValidationErrors(Exception ex, WebRequest request) {
         List<String> details = new ArrayList<>();
         log.info(new EventLogDTO(EventsEnum.EXCEPTION_VALIDATION_ERROR, Map.of("exceptionMessage", Optional.ofNullable(ex.getMessage()).orElse("BAD_REQUEST"))).toString());

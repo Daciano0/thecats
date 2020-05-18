@@ -37,7 +37,7 @@ public class RestTemplateResponseErrorHandler
 
         if (response.getStatusCode()
                 .series() == HttpStatus.Series.SERVER_ERROR) {
-            throw new OrderException("Internal server error. "+errorMap.get("message"));
+            throw new TheCatException("Internal server error. "+errorMap.get("message"));
         } else if (response.getStatusCode()
                 .series() == HttpStatus.Series.CLIENT_ERROR) {
 
@@ -47,7 +47,7 @@ public class RestTemplateResponseErrorHandler
 
             if (response.getStatusCode() == HttpStatus.BAD_REQUEST) {
 
-                throw new OrderException(errorMap.get("message"));
+                throw new TheCatException(errorMap.get("message"));
             }
 
             if (response.getStatusCode() == HttpStatus.UNAUTHORIZED) {
