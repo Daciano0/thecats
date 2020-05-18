@@ -3,7 +3,7 @@ spring:
     name: cat-breeds
   cloud:
     consul:
-      host: 0.0.0.0:8600
+      host: 0.0.0.0:8500
       config:
         format: YAML
         watch:

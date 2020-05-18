@@ -1,6 +1,7 @@
 package com.api.thecat.enums;
 
 public enum EventsEnum {
+    RECEIVED,
     CREATED,
     REQUEST,
     RESPONSE,
