@@ -14,7 +14,7 @@ import java.time.Duration;
 @Data
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties(prefix = "cat")
+@ConfigurationProperties(prefix = "thecat")
 public class CatBreedsConfig {
 
     private String url_cat;
@@ -22,6 +22,7 @@ public class CatBreedsConfig {
 
     private Integer connectTimeout;
     private Integer readTimeout;
+
 
     @Bean
     public RestTemplateBuilder restTemplateBuilder() {

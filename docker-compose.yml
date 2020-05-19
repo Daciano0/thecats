@@ -1,38 +1,40 @@
 version: "3.1"
 
-services:
-   consul:
-     image: "bitnami/consul:latest"
-     container_name: consul-cat
-     networks:
-       - local-cat
-     ports:
-       - "8500:8500"
-       - "8600:8600"
-   db:
-     image: "mongo:3"
-     container_name: mongo-cat
-     networks:
-       - local-cat
-     ports:
-       - "27017:27017"
-     restart: always
-   thecat:
-     depends_on:
-       - db
-       - consul
-     environment:
-       TZ: America/Sao_Paulo
-     image: "thecat:latest"
-     container_name: thecat
-     links:
-       - db
-       - consul
-     ports:
-       - "8080:8080"
-     restart: always
-     networks:
-       - local-cat
 networks:
   local-cat:
-     driver: bridge
+
+services:
+  consul:
+    container_name: consul-cat
+    image: "bitnami/consul:latest"
+    networks:
+      - local-cat
+    ports:
+      - "8500:8500"
+      - "8600:8600"
+  db:
+    container_name: mongo-cat
+    image: "mongo:3"
+    networks:
+      - local-cat
+    ports:
+      - "27017:27017"
+    restart: always
+  thecat:
+    container_name: thecat
+    depends_on:
+      - db
+      - consul
+    environment:
+      TZ: America/Sao_Paulo
+    image: "thecat:latest"
+    links:
+      - db
+      - consul
+    networks:
+      - local-cat
+    ports:
+      - "8080:8080"
+    restart: always
+
+
