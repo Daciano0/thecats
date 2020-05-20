@@ -9,10 +9,10 @@ https://github.com/Daciano0/typesofcat
 
 Use o terminal Linux ou GitBash
 
-# 1 - Baixa o projeto - comando -> git clone <clone> 
-# 2 - Na raiz do projeto existe um arquivo 'docker-compose' - comando -> docker-compose up -d 
-# 3 - No terminal use o comando -> docker ps 
-# 4 - Faça a opção abaixo. Opções essas com a IDE de sua preferência ,ou use o docker para testar as imagens
+ 1 - Baixa o projeto - comando -> git clone <clone> 
+ 2 - Na raiz do projeto existe um arquivo 'docker-compose' - comando -> docker-compose up -d 
+ 3 - No terminal use o comando -> docker ps 
+ 4 - Faça a opção abaixo. Opções essas com a IDE de sua preferência ,ou use o docker para testar as imagens
 # Obs; após configurar o consul, será necessário restartar o container 'thecat' para acessar ao mongo e urls da thecatapi comando  - docker restart thecat
 
 ======
@@ -78,7 +78,6 @@ thecat:
   
 ======
 
-#
 
 # 5 - Vamos falar sobre os endpoints:
 
@@ -106,8 +105,8 @@ para o local é só trocar o path para:  http://localhost:8080/
  
  No mesmo docker-compose já geramos esse projeto. Os passos são os mesmo, porém muda o path do consul e a configuração.
 
-# 1 - No terminal use o comando -> docker ps 
-# 2 - Faça a opção abaixo. Opções essas com a IDE de sua preferência ,ou use o docker para testar as imagens
+ 1 - No terminal use o comando -> docker ps 
+ 2 - Faça a opção abaixo. Opções essas com a IDE de sua preferência ,ou use o docker para testar as imagens
 # Obs; após configurar o consul, será necessário restartar o container 'typescat' para acessar ao mongo e urls da thecatapi comando  - docker restart typescat
 
 
@@ -128,7 +127,7 @@ spring:
 
 =====
 
-5 - Vamos falar sobre os endpoints:
+# 5 - Vamos falar sobre os endpoints:
 
 usar o docker como referência para - os paths;
 
