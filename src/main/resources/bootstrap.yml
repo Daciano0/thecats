@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cat-breeds
+    name: thecat-breeds
   cloud:
     consul:
       host: 0.0.0.0:8500
@@ -13,3 +13,5 @@ spring:
     loadbalancer:
       ribbon:
         enabled: false
+
+securitycat: bigsecurity
