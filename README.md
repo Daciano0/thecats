@@ -25,6 +25,7 @@ Projeto thecat -> Favor jogar isso dentro do consul -> no browser http://0.0.0.0
 
 clicar no botão CREATE (cor azul) e crie o path -> config/thecat-breeds/data  -> 
 
+Obs; Padrão yml o item abaixo.
 
 spring:
   cloud:
