@@ -137,7 +137,8 @@ GET -List - http://0.0.0.0:8081//types/list  -> Lista todos os gatos
 GET - http://0.0.0.0:8081/types/breed - >  Pega o gato por raça
 GET -List http://0.0.0.0.0:8081/types/temperament/list   -> Lista de todos os gatos pela temperamento
 GET -List http://0.0.0.0.0:8081/types/origin/list   - > Lista de todos os gatos pela origin
-GET -List -Criteria http://localhost:8081/types/breeds/queries ->  Usei criteria para fazer qualquer tipo de consulta possível.
+
+GET -List -Criteria http://localhost:8081/types/breeds/queries ->  Usei criteria para fazer qualquer tipo de consulta possível. Header com - Basic YWRtaW46Ymlnc2VjdXJpdHk=    | Precisa para acessar aplicação, por conta do status 401 (Não autorizado) Soment desse path.
 
 GET -List - http://localhost:8080//types/list  -
 GET - http://localhost:8080/types/breed
