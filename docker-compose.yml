@@ -21,7 +21,7 @@ services:
       - "27017:27017"
     restart: always
   typesofcat:
-    image: typesofcat:latest
+    image: daciobsantos/typesofcat:latest
     container_name: typesofcat
     depends_on:
       - db
@@ -37,7 +37,7 @@ services:
       - "8081:8080"
     restart: always
   thecat:
-    image: thecat:latest
+    image: daciobsantos/thecat:latest
     container_name: thecat
     depends_on:
       - db
