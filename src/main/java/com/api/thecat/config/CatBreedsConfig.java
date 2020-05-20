@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.Duration;
+import java.util.Optional;
 
 @Data
 @Configuration
@@ -20,9 +21,10 @@ public class CatBreedsConfig {
     private String url_cat;
     private String url_address;
 
-    private Integer connectTimeout;
-    private Integer readTimeout;
+    private Integer connectTimeout = 300;
+    private Integer readTimeout = 300;
 
+    private CatBreedsConfig catBreedsConfig;
 
     @Bean
     public RestTemplateBuilder restTemplateBuilder() {
@@ -32,8 +34,8 @@ public class CatBreedsConfig {
     @Bean
     public RestTemplate restTemplate() {
         return restTemplateBuilder()
-                .setConnectTimeout(Duration.ofMillis(connectTimeout))
-                .setReadTimeout(Duration.ofMillis(readTimeout))
+                .setConnectTimeout(Duration.ofMillis(Optional.ofNullable(connectTimeout).orElse(300)))
+                .setReadTimeout(Duration.ofMillis(Optional.ofNullable(connectTimeout).orElse(300)))
                 .errorHandler(new RestTemplateResponseErrorHandler())
                 .build();
     }
