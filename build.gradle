@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.7.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'com.avast.gradle.docker-compose' version '0.7.1'
 }
 
 group = 'com.api'
@@ -20,6 +21,24 @@ repositories {
 
 ext {
 	set('springCloudVersion', "Hoxton.SR4")
+}
+
+apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
+
+checkstyleMain {
+	source = 'src/main/java'
+}
+checkstyleTest {
+	source = 'src/test/java'
+}
+
+
+jacoco {
+	toolVersion = "0.8.2"
+	reportsDir = file("$buildDir/jacocoReport")
+
+
 }
 
 dependencies {
@@ -75,6 +94,9 @@ dependencies {
 	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 	compile "org.springframework.boot:spring-boot-configuration-processor"
 
+	testCompile group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '2.2.0.RELEASE'
+	testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'
+
 }
 
 configurations {
@@ -88,6 +110,30 @@ dependencyManagement {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
 }
+
+jacocoTestCoverageVerification {
+
+	violationRules {
+
+		rule {
+			element = 'CLASS'
+			limit {
+				counter = 'LINE'
+				value = 'COVEREDRATIO'
+				minimum = 0.8
+			}
+		}
+	}
+
+}
+
+test.finalizedBy jacocoTestReport
+check.dependsOn jacocoTestCoverageVerification
+
 test {
 	useJUnitPlatform()
+}
+
+dockerCompose {
+	useComposeFiles = ['docker-compose.yml']
 }
